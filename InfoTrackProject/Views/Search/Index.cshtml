@@ -1,0 +1,50 @@
+﻿@model InfoTrackProject.ViewModel.SearchTermVM
+
+@{
+    ViewBag.Title = "Info Track Test Project";
+}
+
+
+<style>
+    .btn-primary {
+        background-color: #2c7394;
+    }
+
+    .container {
+        margin-left: 40px;
+    }
+
+    h2 {
+        margin-bottom: 70px;
+    }
+</style>
+
+<div class="container">
+    <h2>Check Your Website Rank In Google</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <hr />
+        <div class="form-row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                    @Html.LabelFor(model => model.KeyWord)
+                        @Html.EditorFor(model => model.KeyWord, new { htmlAttributes = new { @class = "form-control", placeholder = "Please enter your keyword here" } })
+                        @Html.ValidationMessageFor(model => model.KeyWord, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                    @Html.LabelFor(model => model.URL)
+                        @Html.EditorFor(model => model.URL, new { htmlAttributes = new { @class = "form-control", placeholder = "Please enter your URL here" } })
+                        @Html.ValidationMessageFor(model => model.URL, "", new { @class = "text-danger" })
+            </div>
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+            <div class="form-group">
+                    @Html.LabelFor(model => model.Ranks)
+                        @Html.TextBoxFor(model => model.Ranks, htmlAttributes: new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.Ranks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+</div>
